@@ -1,0 +1,50 @@
+{
+    "html": {
+        "snippets": {
+            "dc": "{# | #}",
+			"dt": "{% | %}",
+            "dv": "{{ | }}",
+			"di": "{% include | %}",
+			"dl": "{% load | %}",
+			"de": "{% extends | %}",
+			"db": "{% block | %}\n\t|\n{% endblock %}",
+			"df": "{% for | %}\n\t|\n{% endfor %}",
+			"dcb": "{% comment %}\n\t|\n{% endcomment %}"
+        }
+    },
+
+	"php": {
+		"snippets": {
+			"ec": "echo( | );\nexit;",
+			"ta": "<?php | ?>",
+			"vd": "var_dump( | );\nexit;",
+			"fo": "foreach ( | as | ) {\n\t|\n}"
+		}
+	},
+
+	"javascript": {
+		"snippets": {
+			"cl": "console.log( | );",
+			"if": "if ( | ) {\n\t|\n};",
+			"fe": "$0.forEach( el => {\n\t$1\n} );",
+			"aef": "|.addEventListener( '|', | => {\n\t|\n} );",
+			"aec": "|.addEventListener( '|', | );"
+		}
+	},
+
+	"typescriptreact": {
+		"snippets": {
+			"cl": "console.log( | );",
+			"if": "if ( | ) {\n\t|\n};",
+			"fe": "|.forEach( el => {\n\t|\n} );",
+			"aef": "|.addEventListener( '|', | => {\n\t|\n} );",
+			"aec": "|.addEventListener( '|', | );"
+		}
+	},
+
+	"markdown": {
+		"snippets": {
+			"td": "- [ ] |"
+		}
+	}
+}

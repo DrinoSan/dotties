@@ -1,0 +1,46 @@
+{
+  "name": "budsnips",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "python"
+        ],
+        "path": "./python.json"
+      },
+	  {
+		  "language": [
+			"dart"
+		  ],
+		  "path": "./dart.json"
+	  },
+	  {
+		  "language": [
+			"go"
+		  ],
+		  "path": "./go.json"
+	  },
+	  {
+		  "language": [
+			"javascript",
+			"typescript"
+		  ],
+		  "path": "./javascript.json"
+	  },
+	  {
+		  "language": [
+			"php"
+		  ],
+		  "path": "./php.json"
+	  },
+	  {
+		  "language": [
+			"sass",
+			"scss",
+			"css"
+		  ],
+		  "path": "./css.json"
+	  }
+    ]
+  }
+}
