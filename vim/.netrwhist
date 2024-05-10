@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/Users/sandi/DEV/copyWithFriends/client'
+let g:netrw_dirhist_5='/Users/sandi/DEV/copyWithFriends'
+let g:netrw_dirhist_4='/Users/sandi/DEV/copyWithFriends/client'
+let g:netrw_dirhist_3='/Users/sandi/DEV/copyWithFriends'
+let g:netrw_dirhist_2='/Users/sandi/DEV/httpServer'
+let g:netrw_dirhist_1='/Users/sandi/DEV/codewars/snail'
+let g:netrw_dirhist_0='/Users/sandi/DEV/httpServer'
+let g:netrw_dirhist_9='/Users/sandi/DEV/Crypto-Sight/src/app/sand'
+let g:netrw_dirhist_8='/Users/sandi/DEV/Crypto-Sight/src/app'
+let g:netrw_dirhist_7='/Users/sandi/DEV/Crypto-Sight/src/app/sand'
