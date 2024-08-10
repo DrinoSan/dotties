@@ -181,7 +181,6 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # Add this to ~/.zshrc or ~/.bash_profile
 export PATH="/Applications/MacPorts/Emacs.app/Contents/MacOS:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
+export PATH="/usr/local/texlive/2024/bin/universal-darwin:$PATH"
 export OPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@3
 
-
-source $HOME/.config/lf/icons.zsh
