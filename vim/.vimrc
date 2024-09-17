@@ -70,8 +70,9 @@ nnoremap <leader>X #``cgn
 nnoremap <leader>n :cnext<CR>
 nnoremap <leader>p :cprev<CR>
 
-"xnoremap J :m '>+1<CR>gv=gv<CR>
-"xnoremap K :m '>-2<CR>gv=gv<CR>
+vnoremap <silent> <C-j> :move '>+1<CR>gv=gv
+vnoremap <silent> <C-k> :move '<-2<CR>gv=gv
+
 
 nnoremap <silent> <C-d> <C-d>zz
 nnoremap <silent> <C-u> <C-u>zz
