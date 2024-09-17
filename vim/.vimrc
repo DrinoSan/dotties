@@ -79,3 +79,8 @@ nnoremap <silent> <C-u> <C-u>zz
 
 
 nnoremap <leader>bg :find /opt/homebrew/include/**/
+
+" Knapp bindings - Starting with k
+nnoremap <leader>ke :find **/libs/entities/basetypes/**/
+nnoremap <leader>ksup :find **/libs/entities/basetypes/**/
+
