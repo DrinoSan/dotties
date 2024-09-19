@@ -81,6 +81,9 @@ nnoremap <silent> <C-u> <C-u>zz
 nnoremap <leader>bg :find /opt/homebrew/include/**/
 
 " Knapp bindings - Starting with k
-nnoremap <leader>ke :find **/libs/entities/basetypes/**/
+" Search for basetypes
+nnoremap <leader>ke :find **/libs/entities/basetypes/
+" Search ctx for Logistix development
+nnoremap <leader>kc :find **/libs/logistix/ctxaccess/ctx
+" Search Suppliers but currently wip :)
 nnoremap <leader>ksup :find **/libs/entities/basetypes/**/
-
