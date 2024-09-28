@@ -23,6 +23,7 @@ set showcmd
 set nowrap
 set ignorecase
 set smartcase
+set incsearch
 
 " Man pages it is
 runtime ftplugin/man.vim
@@ -40,6 +41,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 "nnoremap <leader>f :!git-clang-format -f %<CR> source %
 nnoremap <leader>f :!git-clang-format -f %<CR> \| source % \| normal! <Esc>
+
+" Rust Ctags stuff
+" Call rusty-tags vi to create ctags
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
 
 
 " Using vimgrep to find stuff if ctags doesnot work
@@ -79,6 +84,8 @@ nnoremap <silent> <C-u> <C-u>zz
 
 
 nnoremap <leader>bg :find /opt/homebrew/include/**/
+nnoremap <leader>bc :find /Library/Developer/CommandLineTools/**/
+"Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pcap/pcap.h
 
 " Knapp bindings - Starting with k
 " Search for basetypes
