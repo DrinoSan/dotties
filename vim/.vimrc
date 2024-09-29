@@ -1,3 +1,9 @@
+" Using read command to get input from terminal commands example:
+" :r! find . -type f
+" --- Gets list of all files in current dir
+"
+
+
 let mapleader=" "
 
 set path+=**
