@@ -23,7 +23,9 @@ set showcmd
 set nowrap
 set ignorecase
 set smartcase
-set incsearch
+set incsearch " To eanable ctrl g for search or press "d" then "/" then the word you want to delete and everthing from courser up to word will be deleted
+set ruler "to show column number
+set autoindent "to correctly indent after linbreak
 
 " Man pages it is
 runtime ftplugin/man.vim
