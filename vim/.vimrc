@@ -95,6 +95,10 @@ nnoremap <leader>bg :find /opt/homebrew/include/**/
 nnoremap <leader>bc :find /Library/Developer/CommandLineTools/**/
 "Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pcap/pcap.h
 
+
+" I have no idea
+command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
+
 " Knapp bindings - Starting with k
 " Search for basetypes
 nnoremap <leader>ke :find **/libs/entities/basetypes/
