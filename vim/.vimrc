@@ -106,3 +106,5 @@ nnoremap <leader>ke :find **/libs/entities/basetypes/
 nnoremap <leader>kc :find **/libs/logistix/ctxaccess/ctx
 " Search Suppliers but currently wip :)
 nnoremap <leader>ksup :find **/libs/entities/basetypes/**/
+" Search Lookups :)
+nnoremap <leader>kl :find **/libs/entities/lookup/
