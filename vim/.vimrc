@@ -108,3 +108,5 @@ nnoremap <leader>kc :find **/libs/logistix/ctxaccess/ctx
 nnoremap <leader>ksup :find **/libs/entities/basetypes/**/
 " Search Lookups :)
 nnoremap <leader>kl :find **/libs/entities/lookup/
+" Search Services :)
+noremap <leader>ks :find libs/components/service/
