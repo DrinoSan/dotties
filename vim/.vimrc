@@ -76,6 +76,8 @@ let g:netrw_liststyle=3     " tree view
 "let g:netrw_list_hide=netrw_gitignore#Hide()
 "let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
+" Switch to last open buffer
+nnoremap <leader><leader> :b #<CR>
 
 nnoremap <leader>x *``cgn
 nnoremap <leader>X #``cgn
