@@ -32,6 +32,7 @@ set smartcase
 set incsearch " To eanable ctrl g for search or press "d" then "/" then the word you want to delete and everthing from courser up to word will be deleted
 set ruler "to show column number
 set autoindent "to correctly indent after linbreak
+set scrolloff=8
 
 " Man pages it is
 runtime ftplugin/man.vim
@@ -96,6 +97,10 @@ nnoremap <silent> <C-u> <C-u>zz
 nnoremap <leader>bg :find /opt/homebrew/include/**/
 nnoremap <leader>bc :find /Library/Developer/CommandLineTools/**/
 "Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pcap/pcap.h
+
+" Cppreference
+set tags+=/Users/sandi/DEV/html-book-20240610
+
 
 
 " I have no idea
