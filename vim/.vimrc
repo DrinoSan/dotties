@@ -111,8 +111,8 @@ command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=h
 nnoremap <leader>ke :find **/libs/entities/basetypes/
 " Search ctx for Logistix development
 nnoremap <leader>kc :find **/libs/logistix/ctxaccess/ctx
-" Search Suppliers but currently wip :)
-nnoremap <leader>ksup :find **/libs/entities/basetypes/**/
+" Search Suppliers
+nnoremap <leader>ksup :find **/libs/components/suppliers/**/
 " Search Lookups :)
 nnoremap <leader>kl :find **/libs/entities/lookup/
 " Search Services :)
