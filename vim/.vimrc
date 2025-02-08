@@ -49,7 +49,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 "`<CR>t` to jump _back_ up the tag stack
 
 "nnoremap <leader>f :!git-clang-format -f %<CR> source %
-nnoremap <leader>f :!git-clang-format -f %<CR> \| source % \| normal! <Esc>
+nnoremap <leader>f :!clang-format -i %<CR> \| source % \| normal! <Esc>
 
 " Rust Ctags stuff
 " Call rusty-tags vi to create ctags
