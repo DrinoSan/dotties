@@ -1,130 +1,134 @@
-" Using read command to get input from terminal commands example:
-" :r! find . -type f
-" --- Gets list of all files in current dir
-"
+" I need to add this because the company does not like my vimrc...
+if getenv( "SAND" ) != v:null
+   " Using read command to get input from terminal commands example:
+   " :r! find . -type f
+   " --- Gets list of all files in current dir
+   "
 
 
-let mapleader=" "
+   let mapleader=" "
 
-set path+=**
-set wildmenu
+   set path+=**
+   set wildmenu
 
-syntax on
-filetype plugin on
+   syntax on
+   filetype plugin on
 
-set mouse=a
-set tabstop=3
-set shiftwidth=3
-set smartindent
-set number
-set relativenumber
-set hlsearch
-set expandtab
-set undodir=~/.vim/undodir
-set undofile
-set nocompatible
-set ruler
-set laststatus=2
-set noswapfile
-set showcmd
-set nowrap
-set ignorecase
-set smartcase
-set incsearch " To eanable ctrl g for search or press "d" then "/" then the word you want to delete and everthing from courser up to word will be deleted
-set ruler "to show column number
-set autoindent "to correctly indent after linbreak
-set scrolloff=8
+   set tabstop=3
+   set shiftwidth=3
+   set smartindent
+   set number
+   set relativenumber
+   set hlsearch
+   set expandtab
+   set undodir=~/.vim/undodir
+   set undofile
+   set nocompatible
+   set ruler
+   set laststatus=2
+   set noswapfile
+   set showcmd
+   set nowrap
+   set ignorecase
+   set smartcase
+   set incsearch " To eanable ctrl g for search or press "d" then "/" then the word you want to delete and everthing from courser up to word will be deleted
+   set ruler "to show column number
+   set autoindent "to correctly indent after linbreak
+   set scrolloff=8
 
-set hidden
+   set hidden
 
-" Man pages it is
-runtime ftplugin/man.vim
-set keywordprg=:Man
+   " Man pages it is
+   runtime ftplugin/man.vim
+   set keywordprg=:Man
 
-" Remove whitespace on space of each line
-autocmd BufWritePre * :%s/\s\+$//e
+   " Remove whitespace on space of each line
+   autocmd BufWritePre * :%s/\s\+$//e
 
-"## LSP FAKE
-"\<CR\> = CTRL
-"CTAGS "LSP"
-"`<CR>]` to jump to a tag under the cursor
-"`g<CR>]` to get a listing of all matching tags
-"`<CR>t` to jump _back_ up the tag stack
+   "## LSP FAKE
+   "\<CR\> = CTRL
+   "CTAGS "LSP"
+   "`<CR>]` to jump to a tag under the cursor
+   "`g<CR>]` to get a listing of all matching tags
+   "`<CR>t` to jump _back_ up the tag stack
 
-"nnoremap <leader>f :!git-clang-format -f %<CR> source %
-nnoremap <leader>f :!clang-format -i %<CR> \| source % \| normal! <Esc>
+   "nnoremap <leader>f :!git-clang-format -f %<CR> source %
+   nnoremap <leader>f :!clang-format -i %<CR> \| source % \| normal! <Esc>
 
-" Rust Ctags stuff
-" Call rusty-tags vi to create ctags
-autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
-
-
-" Using vimgrep to find stuff if ctags doesnot work
-" vimgrep /FunctionName/gjf *
-" :help vimgrep
-" Slash wird benutzt um den such string mit den falgs zu trennen * für alle
-" folder
-" Dann normal mit :copen :cnext :cprev arbeiten
-"
-" Wenn es notwendig ist folder zu ignorieren:
-"     :set wildignore+=objd/**,obj/**,*.tmp,test.c
-" :help wildignore
-
-set wildignore+=objd/**,obj/**,*.tmp,*.o,*.d
-
-" For more stuff:
-" :help netrw-browse-maps
-let g:netrw_banner=0        " disable annoying banner
-let g:netrw_browse_split=4  " open in prior window
-let g:netrw_liststyle=3     " tree view
-"let g:netrw_list_hide=netrw_gitignore#Hide()
-"let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
-
-" Switch to last open buffer
-nnoremap <leader><leader> :b #<CR>
-
-nnoremap <leader>x *``cgn
-nnoremap <leader>X #``cgn
-
-nnoremap <leader>n :cnext<CR>
-nnoremap <leader>p :cprev<CR>
-
-vnoremap <silent> <C-j> :move '>+1<CR>gv=gv
-vnoremap <silent> <C-k> :move '<-2<CR>gv=gv
+   " Rust Ctags stuff
+   " Call rusty-tags vi to create ctags
+   autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
 
 
-nnoremap <silent> <C-d> <C-d>zz
-nnoremap <silent> <C-u> <C-u>zz
+   " Using vimgrep to find stuff if ctags doesnot work
+   " vimgrep /FunctionName/gjf *
+   " :help vimgrep
+   " Slash wird benutzt um den such string mit den falgs zu trennen * für alle
+   " folder
+   " Dann normal mit :copen :cnext :cprev arbeiten
+   "
+   " Wenn es notwendig ist folder zu ignorieren:
+   "     :set wildignore+=objd/**,obj/**,*.tmp,test.c
+   " :help wildignore
+
+   set wildignore+=objd/**,obj/**,*.tmp,*.o,*.d
+
+   " For more stuff:
+   " :help netrw-browse-maps
+   let g:netrw_banner=0        " disable annoying banner
+   let g:netrw_browse_split=4  " open in prior window
+   let g:netrw_liststyle=3     " tree view
+   "let g:netrw_list_hide=netrw_gitignore#Hide()
+   "let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+   " Switch to last open buffer
+   nnoremap <leader><leader> :b #<CR>
+
+   nnoremap <leader>x *``cgn
+   nnoremap <leader>X #``cgn
+
+   nnoremap <leader>n :cnext<CR>
+   nnoremap <leader>p :cprev<CR>
+
+   vnoremap <silent> <C-j> :move '>+1<CR>gv=gv
+   vnoremap <silent> <C-k> :move '<-2<CR>gv=gv
 
 
-nnoremap <leader>bg :find /opt/homebrew/include/**/
-nnoremap <leader>bc :find /Library/Developer/CommandLineTools/**/
-"Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pcap/pcap.h
-
-" Cppreference
-set tags+=/Users/sandi/DEV/html-book-20240610
+   nnoremap <silent> <C-d> <C-d>zz
+   nnoremap <silent> <C-u> <C-u>zz
 
 
+   nnoremap <leader>bg :find /opt/homebrew/include/**/
+   nnoremap <leader>bc :find /Library/Developer/CommandLineTools/**/
+   "Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pcap/pcap.h
 
-" I have no idea
-command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
-
-" Knapp bindings - Starting with k
-" Search for basetypes
-nnoremap <leader>ke :find **/libs/entities/basetypes/
-" Search ctx for Logistix development
-nnoremap <leader>kc :find **/libs/logistix/ctxaccess/ctx
-" Search Suppliers
-nnoremap <leader>ksup :find **/libs/components/suppliers/**/
-" Search Lookups :)
-nnoremap <leader>kl :find **/libs/entities/lookup/
-" Search Services :)
-noremap <leader>ks :find libs/components/service/
+   " Cppreference
+   set tags+=/Users/sandi/DEV/html-book-20240610
 
 
 
-" Tmux movement
-nnoremap <silent><a-h>  :<c-u>call sand#tmux_navigate('h')<cr>
-nnoremap <silent><a-j>  :<c-u>call sand#tmux_navigate('j')<cr>
-nnoremap <silent><a-k>  :<c-u>call sand#tmux_navigate('k')<cr>
-nnoremap <silent><a-l>  :<c-u>call sand#tmux_navigate('l')<cr>
+   " I have no idea
+   command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
+
+   " Knapp bindings - Starting with k
+   " Search for basetypes
+   nnoremap <leader>ke :find **/libs/entities/basetypes/
+   " Search ctx for Logistix development
+   nnoremap <leader>kc :find **/libs/logistix/ctxaccess/ctx
+   " Search Suppliers
+   nnoremap <leader>ksup :find **/libs/components/suppliers/**/
+   " Search Lookups :)
+   nnoremap <leader>kl :find **/libs/entities/lookup/
+   " Search Services :)
+   noremap <leader>ks :find libs/components/service/
+
+
+
+   " Tmux movement
+   echom "autoload/sand.vim loaded!"
+   nnoremap <silent><a-h>  :<c-u>call sand#tmux_navigate('h')<cr>
+   nnoremap <silent><a-j>  :<c-u>call sand#tmux_navigate('j')<cr>
+   nnoremap <silent><a-k>  :<c-u>call sand#tmux_navigate('k')<cr>
+   nnoremap <silent><a-l>  :<c-u>call sand#tmux_navigate('l')<cr>
+
+endif
