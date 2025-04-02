@@ -121,6 +121,10 @@ if getenv( "SAND" ) != v:null
    nnoremap <leader>kl :find **/libs/entities/lookup/
    " Search Services :)
    noremap <leader>ks :find libs/components/service/
+   " Format Logistix workflowutil
+   " noremap <leader>lf :R workflowUtil -F -f %<CR>   <--- I wanted it to work
+   " like this
+   noremap <leader>lf :if !isdirectory(expand("%:p"))<Bar> execute 'R workflowUtil -F -f ' . shellescape(expand("%:p"))<Bar> execute 'source ' . expand("%:p")<Bar> endif<CR>
 
 
 
