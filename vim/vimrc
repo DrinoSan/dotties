@@ -97,6 +97,8 @@ if getenv( "SAND" ) != v:null
    nnoremap <silent> <C-d> <C-d>zz
    nnoremap <silent> <C-u> <C-u>zz
 
+   nnoremap <silent> gd <C-]>
+
 
    nnoremap <leader>bg :find /opt/homebrew/include/**/
    nnoremap <leader>bc :find /Library/Developer/CommandLineTools/**/
