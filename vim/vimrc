@@ -1,5 +1,6 @@
 " I need to add this because the company does not like my vimrc...
 if getenv( "SAND" ) != v:null
+   " if getenv is to new you have to use if expand( "$SAND" ) != "$SAND"
    " Using read command to get input from terminal commands example:
    " :r! find . -type f
    " --- Gets list of all files in current dir
