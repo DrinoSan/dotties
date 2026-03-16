@@ -142,6 +142,4 @@ if getenv( "SAND" ) != v:null
    nnoremap <silent><a-k>  :<c-u>call sand#tmux_navigate('k')<cr>
    nnoremap <silent><a-l>  :<c-u>call sand#tmux_navigate('l')<cr>
 
-set rtp^="/Users/sandi/.opam/default/share/ocp-indent/vim"
-
 endif
