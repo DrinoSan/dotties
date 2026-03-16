@@ -39,8 +39,8 @@ if getenv( "SAND" ) != v:null
    set hidden
 
    " Man pages it is
-   runtime ftplugin/man.vim
-   set keywordprg=:Man
+   " runtime ftplugin/man.vim
+   " set keywordprg=:Man
 
    " Remove whitespace on space of each line
    autocmd BufWritePre * :%s/\s\+$//e
@@ -104,6 +104,10 @@ if getenv( "SAND" ) != v:null
    nnoremap <leader>bc :find /Library/Developer/CommandLineTools/**/
    "Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pcap/pcap.h
 
+   " Adding some git diff shortcut
+   nnoremap <leader>gd :vert new \| r !git show HEAD:#<CR>:diffthis<CR><C-W>l:diffthis<CR>
+   set diffopt+=context:99999
+
    " Cppreference
    set tags+=/Users/sandi/DEV/html-book-20240610
 
@@ -136,5 +140,7 @@ if getenv( "SAND" ) != v:null
    nnoremap <silent><a-j>  :<c-u>call sand#tmux_navigate('j')<cr>
    nnoremap <silent><a-k>  :<c-u>call sand#tmux_navigate('k')<cr>
    nnoremap <silent><a-l>  :<c-u>call sand#tmux_navigate('l')<cr>
+
+set rtp^="/Users/sandi/.opam/default/share/ocp-indent/vim"
 
 endif
