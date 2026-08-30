@@ -1,4 +1,5 @@
 function! sand#tmux_navigate(direction) abort
+  echom "Entering mhi#tmux_navigate with direction: " . a:direction
   let oldwin = winnr()
   execute 'wincmd' a:direction
   if !empty($TMUX) && winnr() == oldwin
