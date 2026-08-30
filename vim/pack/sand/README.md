@@ -26,6 +26,7 @@ Everything here lives in `opt/` on purpose, so the `if getenv("SAND")` guard in
 | `format`        | `:Format` that cannot eat your buffer               | `:h format`       |
 | `keyclue`       | popup showing what can follow a prefix key          | `:h keyclue`      |
 | `pick`          | fuzzy `:Files`, live `:Grep`, `:Buffers`, `:Lines`  | `:h pick`         |
+| `harpoon`       | a few files per project, jumped to by number        | `:h harpoon`      |
 
 ## Layout of one plugin
 

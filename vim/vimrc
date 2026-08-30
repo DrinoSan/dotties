@@ -166,6 +166,12 @@ if getenv( "SAND" ) != v:null
          \ '<leader>sg': 'live grep',
          \ '<leader>sb': 'buffers',
          \ '<leader>sl': 'lines in this buffer',
+         \ '<leader>a':  'harpoon: mark this file',
+         \ '<leader>h':  'harpoon: menu',
+         \ '<leader>1':  'harpoon: go to 1',
+         \ '<leader>2':  'harpoon: go to 2',
+         \ '<leader>3':  'harpoon: go to 3',
+         \ '<leader>4':  'harpoon: go to 4',
          \ }
 
    " How long vim waits on an incomplete mapping - this is the delay before
@@ -180,6 +186,7 @@ if getenv( "SAND" ) != v:null
          \ 'format',
          \ 'keyclue',
          \ 'pick',
+         \ 'harpoon',
          \ ]
       execute 'packadd!' s:plugin
    endfor

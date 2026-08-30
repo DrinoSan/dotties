@@ -1,0 +1,65 @@
+*harpoon.txt*   A few files per project, reachable by number
+
+==============================================================================
+THE IDEA                                                     *harpoon-idea*
+
+In any project there are three or four files you actually live in. Mark them
+once, then jump straight to one by number - no fuzzy search, no picker, no
+thinking. The marks are per project and survive restarts.
+
+    <leader>a     mark the current file
+    <leader>1     jump to mark 1
+    <leader>2     jump to mark 2, and so on up to 9
+    <leader>h     open the menu
+
+A mark remembers the line you were on, so jumping back puts you where you
+left off.
+
+==============================================================================
+THE MENU                                                     *harpoon-menu*
+
+`<leader>h` (|:HarpoonMenu|) opens an ordinary, editable buffer with one file
+per line. Edit it like any other buffer:
+
+    dd          unmark a file
+    ddp         reorder - which renumbers the jumps
+    :w          keep the changes
+    <CR>        open the file under the cursor, keeping any pending edits
+    q           close and throw the pending edits away
+
+Reordering is the point: put the file you use most on line 1.
+
+==============================================================================
+COMMANDS                                                 *harpoon-commands*
+
+:HarpoonAdd                     mark the current file
+:HarpoonRemove                  unmark the current file
+:HarpoonGo {n}                  jump to mark {n}
+:HarpoonNext  :HarpoonPrev      cycle through the marks
+:HarpoonMenu                    open the editable menu
+:HarpoonList                    print the marks
+:HarpoonClear                   drop every mark for this project
+
+==============================================================================
+CONFIGURATION                                              *harpoon-config*
+
+                                                          *g:harpoon_file*
+Where the marks are stored, default `~/.cache/vim/harpoon.json`. One JSON
+object keyed by project root; paths inside are stored relative to that root,
+so moving or re-cloning a checkout keeps the marks working.
+
+A project is the git top level of the current file, falling back to the
+working directory.
+
+                                                   *g:harpoon_no_mappings*
+Set to 1 for commands only, then bind what you like: >
+    let g:harpoon_no_mappings = 1
+    nmap <C-e> <Plug>HarpoonMenu
+    nnoremap <leader>1 :HarpoonGo 1<CR>
+<
+`<C-e>` is what the original harpoon uses for the menu. It is not the default
+here because it would shadow the built-in scroll-down.
+
+Needs |json_encode()|. Without it marks still work, but only for the session.
+
+vim:tw=78:ts=8:ft=help:norl:

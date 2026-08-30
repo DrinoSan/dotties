@@ -135,11 +135,20 @@ endfunction
 " -------------------------------------------------------------------- open
 
 function! s:open(item, how) abort
-  if empty(get(a:item, 'file', ''))
+  let nr = get(a:item, 'bufnr', 0)
+
+  " Prefer the buffer number when we have one: :buffer keeps the position we
+  " left it at, and it works for buffers with no file name at all.
+  if nr > 0 && bufexists(nr)
+    execute {'edit': 'buffer', 'split': 'sbuffer',
+          \ 'vsplit': 'vertical sbuffer', 'tab': 'tab sbuffer'}[a:how] nr
+  elseif !empty(get(a:item, 'file', ''))
+    execute {'edit': 'edit', 'split': 'split',
+          \ 'vsplit': 'vsplit', 'tab': 'tabedit'}[a:how] fnameescape(a:item.file)
+  else
     return
   endif
-  let cmd = {'edit': 'edit', 'split': 'split', 'vsplit': 'vsplit', 'tab': 'tabedit'}[a:how]
-  execute cmd fnameescape(a:item.file)
+
   if get(a:item, 'lnum', 0) > 0
     call cursor(a:item.lnum, max([1, get(a:item, 'col', 1)]))
     normal! zz
@@ -282,8 +291,24 @@ function! sand#pick#files(...) abort
     return
   endif
   let prefix = dir ==# '.' ? '' : substitute(dir, '/*$', '/', '')
-  call sand#pick#run({'prompt': 'files',
-        \ 'items': map(out, '{"text": prefix . v:val, "file": prefix . v:val}')})
+
+  " Mark the ones that are already open, so the file list doubles as a
+  " "what am I working on" view.
+  let open = {}
+  for b in getbufinfo({'buflisted': 1})
+    if !empty(b.name)
+      let open[fnamemodify(b.name, ':p')] = 1
+    endif
+  endfor
+
+  let items = []
+  for f in out
+    let path = prefix . f
+    call add(items, {'file': path,
+          \ 'text': printf('%s %s',
+          \   has_key(open, fnamemodify(path, ':p')) ? '+' : ' ', path)})
+  endfor
+  call sand#pick#run({'prompt': 'files', 'items': items})
 endfunction
 
 function! sand#pick#grep(...) abort
@@ -306,8 +331,10 @@ function! sand#pick#buffers() abort
   let items = []
   for b in getbufinfo({'buflisted': 1})
     let name = empty(b.name) ? '[No Name]' : fnamemodify(b.name, ':~:.')
-    call add(items, {'text': printf('%3d  %s', b.bufnr, name),
-          \ 'file': b.name, 'lnum': get(b, 'lnum', 1)})
+    " No lnum: :buffer restores the position on its own.
+    call add(items, {'text': printf('%3d %s %s', b.bufnr,
+          \ b.changed ? '+' : ' ', name),
+          \ 'bufnr': b.bufnr, 'file': b.name})
   endfor
   call sand#pick#run({'prompt': 'buffers', 'items': items})
 endfunction
