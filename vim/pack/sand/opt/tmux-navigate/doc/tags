@@ -1,0 +1,10 @@
+:TmuxNavigateDown	tmux-navigate.txt	/*:TmuxNavigateDown*
+:TmuxNavigateLeft	tmux-navigate.txt	/*:TmuxNavigateLeft*
+:TmuxNavigateRight	tmux-navigate.txt	/*:TmuxNavigateRight*
+:TmuxNavigateUp	tmux-navigate.txt	/*:TmuxNavigateUp*
+g:tmux_navigate_no_mappings	tmux-navigate.txt	/*g:tmux_navigate_no_mappings*
+tmux-navigate-config	tmux-navigate.txt	/*tmux-navigate-config*
+tmux-navigate-contents	tmux-navigate.txt	/*tmux-navigate-contents*
+tmux-navigate-mappings	tmux-navigate.txt	/*tmux-navigate-mappings*
+tmux-navigate-usage	tmux-navigate.txt	/*tmux-navigate-usage*
+tmux-navigate.txt	tmux-navigate.txt	/*tmux-navigate.txt*

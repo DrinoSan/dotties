@@ -1,0 +1,9 @@
+:Format	format.txt	/*:Format*
+:FormatFile	format.txt	/*:FormatFile*
+:FormatWith	format.txt	/*:FormatWith*
+format-commands	format.txt	/*format-commands*
+format-config	format.txt	/*format-config*
+format-safety	format.txt	/*format-safety*
+format.txt	format.txt	/*format.txt*
+g:format_by_filetype	format.txt	/*g:format_by_filetype*
+g:format_on_save	format.txt	/*g:format_on_save*

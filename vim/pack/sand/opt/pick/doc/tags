@@ -1,0 +1,14 @@
+:Buffers	pick.txt	/*:Buffers*
+:Files	pick.txt	/*:Files*
+:Grep	pick.txt	/*:Grep*
+:Lines	pick.txt	/*:Lines*
+g:pick_files_command	pick.txt	/*g:pick_files_command*
+g:pick_grep_command	pick.txt	/*g:pick_grep_command*
+g:pick_grep_min	pick.txt	/*g:pick_grep_min*
+g:pick_height	pick.txt	/*g:pick_height*
+g:pick_max	pick.txt	/*g:pick_max*
+pick-commands	pick.txt	/*pick-commands*
+pick-config	pick.txt	/*pick-config*
+pick-keys	pick.txt	/*pick-keys*
+pick-notes	pick.txt	/*pick-notes*
+pick.txt	pick.txt	/*pick.txt*

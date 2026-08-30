@@ -1,0 +1,38 @@
+*tmux-navigate.txt*   Seamless movement between vim windows and tmux panes
+
+==============================================================================
+CONTENTS                                            *tmux-navigate-contents*
+
+    1. Usage ................ |tmux-navigate-usage|
+    2. Mappings ............. |tmux-navigate-mappings|
+    3. Configuration ........ |tmux-navigate-config|
+
+==============================================================================
+1. USAGE                                               *tmux-navigate-usage*
+
+Moves to the vim window in the given direction. If there is no vim window
+that way and vim is running inside tmux, the corresponding tmux pane is
+selected instead.
+
+Load it from your vimrc with: >
+    packadd! tmux-navigate
+<
+==============================================================================
+2. MAPPINGS                                         *tmux-navigate-mappings*
+
+Default normal mode mappings:
+
+    <A-h>    move left       *:TmuxNavigateLeft*
+    <A-j>    move down       *:TmuxNavigateDown*
+    <A-k>    move up         *:TmuxNavigateUp*
+    <A-l>    move right      *:TmuxNavigateRight*
+
+==============================================================================
+3. CONFIGURATION                                      *tmux-navigate-config*
+
+                                              *g:tmux_navigate_no_mappings*
+Set this before loading the package to suppress the default mappings: >
+    let g:tmux_navigate_no_mappings = 1
+    nmap <C-w>h <Plug>TmuxNavigateLeft
+<
+vim:tw=78:ts=8:ft=help:norl:

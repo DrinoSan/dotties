@@ -1,0 +1,61 @@
+*pick.txt*   Fuzzy file, grep, buffer and line picker
+
+==============================================================================
+COMMANDS                                                    *pick-commands*
+
+:Files [dir]                                                       *:Files*
+        Fuzzy pick a file. Uses `rg --files`, else `git ls-files`, else
+        `find`, whichever is available.
+
+:Grep [pattern]                                                     *:Grep*
+        Live grep: the search re-runs as you type, like telescope's
+        live_grep. Backend is `rg`, else `git grep`, else portable `grep -rIn`.
+
+:Buffers                                                         *:Buffers*
+:Lines                                                             *:Lines*
+        Pick among listed buffers, or lines of the current buffer.
+
+Default mappings, disable with |g:pick_no_mappings|:
+
+    <leader>sf   :Files          <leader>sb   :Buffers
+    <leader>sg   :Grep           <leader>sl   :Lines
+
+==============================================================================
+KEYS INSIDE THE PICKER                                          *pick-keys*
+
+    <C-n> <Down>   next            <CR>    open
+    <C-p> <Up>     previous        <C-v>   open in a vertical split
+    <BS>           delete a char   <C-x>   open in a split
+    <C-u>          clear query     <C-t>   open in a tab
+    <Esc> <C-c>    cancel          <C-q>   send all matches to |quickfix|
+
+<C-q> is the important one: pick roughly, then work through the results with
+your existing `<leader>n` / `<leader>p` |:cnext| mappings.
+
+==============================================================================
+CONFIGURATION                                                 *pick-config*
+
+                                                    *g:pick_files_command*
+                                                     *g:pick_grep_command*
+Override the backends. In the grep command `%s` is replaced by the escaped
+pattern: >
+    let g:pick_grep_command = 'rg --vimgrep --fixed-strings -- %s'
+<
+                                     *g:pick_height* *g:pick_max*
+Popup height (default 15) and the cap on results kept (default 500).
+
+                                                       *g:pick_grep_min*
+Characters required before a live grep runs, default 2. Raise it to 3 or 4
+when only plain `grep` is available on a large tree.
+
+==============================================================================
+NOTES                                                          *pick-notes*
+
+Searching is synchronous, but debounced against the typeahead: while keys are
+still queued the search is skipped, so fast typing costs one search, not one
+per character. Installing `ripgrep` makes this comfortable on any repo size.
+
+Needs vim with |+popupwin| (vim 8.2+). Without it the commands report that and
+do nothing - use |:vimgrep| or `:grep` into the quickfix list instead.
+
+vim:tw=78:ts=8:ft=help:norl:

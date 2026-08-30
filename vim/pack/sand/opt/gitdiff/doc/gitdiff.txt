@@ -1,0 +1,31 @@
+*gitdiff.txt*   Diff the current buffer against a git revision
+
+==============================================================================
+COMMANDS                                                 *gitdiff-commands*
+
+:GitDiff [rev]                                                   *:GitDiff*
+        Open the current file as it exists at [rev] (default `HEAD`) in a
+        vertical scratch split and start |vimdiff| between the two. Completes
+        on branches and the usual `HEAD~n`.
+
+        The scratch side is 'nomodifiable' - it does not exist on disk, so
+        editing it could only ever lose work.
+
+:GitDiffOff                                                   *:GitDiffOff*
+        Turn the diff off and wipe the scratch buffer. Works from either
+        side of the diff.
+
+==============================================================================
+MAPPINGS                                                 *gitdiff-mappings*
+
+    <leader>gd    :GitDiff
+    <leader>gD    :GitDiffOff
+
+Set |g:gitdiff_no_mappings| to 1 and use the <Plug> maps instead: >
+    let g:gitdiff_no_mappings = 1
+    nmap <leader>d <Plug>GitDiff
+<
+Whole-file context is a 'diffopt' setting, not something this plugin sets: >
+    set diffopt+=context:99999
+<
+vim:tw=78:ts=8:ft=help:norl:

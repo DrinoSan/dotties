@@ -1,0 +1,61 @@
+*format.txt*   Run a formatter over the buffer without eating it
+
+==============================================================================
+COMMANDS                                                  *format-commands*
+
+:[range]Format                                                    *:Format*
+        Format the buffer with the formatter configured for its 'filetype'.
+        With a range, format only those lines if the tool supports it.
+
+:[range]FormatWith {cmd}                                      *:FormatWith*
+        Format through {cmd} once, without configuring anything.
+
+:FormatFile {cmd}                                             *:FormatFile*
+        For a tool that only rewrites files: writes the buffer, runs {cmd}
+        with `%s` replaced by the escaped path, then reloads. >
+            :FormatFile workflowUtil -F -f %s
+<
+
+Mappings: `<leader>f` in normal and visual mode. Disable with
+|g:format_no_mappings|.
+
+==============================================================================
+HOW IT WORKS                                                 *format-safety*
+
+The default mode sends the buffer to the formatter on stdin and reads the
+result from stdout. This matters:
+
+  - the file on disk is never touched, so an unsaved buffer stays unsaved;
+  - undo history survives, `u` takes you back to the unformatted text;
+  - if the formatter exits non-zero the buffer is left exactly as it was and
+    the error is reported. A `:%!cmd` filter would have replaced your code
+    with the error message.
+
+Cursor and window position are restored afterwards.
+
+==============================================================================
+CONFIGURATION                                               *format-config*
+
+                                                    *g:format_by_filetype*
+Dictionary of `filetype : spec`. A spec has:
+
+    cmd     shell command. `%s` is replaced with the escaped path of the
+            buffer - pass it to `--assume-filename` so tools like
+            clang-format still find the project's style file when reading
+            from stdin.
+    mode    `filter` (default) or `inplace` for tools that only rewrite
+            files. `inplace` writes the buffer first, then reloads it.
+    range   printf template receiving first and last line, e.g.
+            `--lines=%d:%d`. Omit it and ranges are ignored.
+
+Example for a tool that has no stdin mode: >
+    let g:format_by_filetype['logistix'] =
+      \ {'cmd': 'workflowUtil -F -f %s', 'mode': 'inplace'}
+<
+                                                       *g:format_on_save*
+List of filetypes to format on |BufWritePre|, default empty: >
+    let g:format_on_save = ['cpp', 'rust']
+<
+Only `filter` formatters run on save - an `inplace` one would recurse.
+
+vim:tw=78:ts=8:ft=help:norl:

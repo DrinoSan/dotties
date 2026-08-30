@@ -1,3 +1,6 @@
+" to run cmake from the project inside vim --> :make -C build/
+
+
 " I need to add this because the company does not like my vimrc...
 if getenv( "SAND" ) != v:null
    " if getenv is to new you have to use if expand( "$SAND" ) != "$SAND"
@@ -53,8 +56,9 @@ if getenv( "SAND" ) != v:null
    "`g<CR>]` to get a listing of all matching tags
    "`<CR>t` to jump _back_ up the tag stack
 
-   "nnoremap <leader>f :!git-clang-format -f %<CR> source %
-   nnoremap <leader>f :!clang-format -i %<CR> \| source % \| normal! <Esc>
+   " <leader>f is :Format, see the format plugin. It pipes the buffer through
+   " clang-format on stdin instead of clang-format -i, so the file on disk is
+   " never touched and undo still works.
 
    " Rust Ctags stuff
    " Call rusty-tags vi to create ctags
@@ -101,12 +105,8 @@ if getenv( "SAND" ) != v:null
    nnoremap <silent> gd <C-]>
 
 
-   nnoremap <leader>bg :find /opt/homebrew/include/**/
-   nnoremap <leader>bc :find /Library/Developer/CommandLineTools/**/
-   "Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pcap/pcap.h
 
-   " Adding some git diff shortcut
-   nnoremap <leader>gd :vert new \| r !git show HEAD:#<CR>:diffthis<CR><C-W>l:diffthis<CR>
+   " <leader>gd is :GitDiff, see the gitdiff plugin.
    set diffopt+=context:99999
 
    " Cppreference
@@ -117,29 +117,71 @@ if getenv( "SAND" ) != v:null
    " I have no idea
    command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
 
-   " Knapp bindings - Starting with k
-   " Search for basetypes
-   nnoremap <leader>ke :find **/libs/entities/basetypes/
-   " Search ctx for Logistix development
-   nnoremap <leader>kc :find **/libs/logistix/ctxaccess/ctx
-   " Search Suppliers
-   nnoremap <leader>ksup :find **/libs/components/suppliers/**/
-   " Search Lookups :)
-   nnoremap <leader>kl :find **/libs/entities/lookup/
-   " Search Services :)
-   noremap <leader>ks :find libs/components/service/
-   " Format Logistix workflowutil
-   " noremap <leader>lf :R workflowUtil -F -f %<CR>   <--- I wanted it to work
-   " like this
-   noremap <leader>lf :if !isdirectory(expand("%:p"))<Bar> execute 'R workflowUtil -F -f ' . shellescape(expand("%:p"))<Bar> execute 'source ' . expand("%:p")<Bar> endif<CR>
+   " Format Logistix workflowutil. :FormatFile writes the buffer, runs the
+   " tool on it and reloads - workflowUtil has no stdin mode.
+   nnoremap <leader>lf :FormatFile workflowUtil -F -f %s<CR>
 
 
 
-   " Tmux movement
-   echom "autoload/sand.vim loaded!"
-   nnoremap <silent><a-h>  :<c-u>call sand#tmux_navigate('h')<cr>
-   nnoremap <silent><a-j>  :<c-u>call sand#tmux_navigate('j')<cr>
-   nnoremap <silent><a-k>  :<c-u>call sand#tmux_navigate('k')<cr>
-   nnoremap <silent><a-l>  :<c-u>call sand#tmux_navigate('l')<cr>
+   " ---------------------------------------------------------------------
+   " My own plugins. They live in ~/.vim/pack/sand/opt/<name> and vim finds
+   " them there on its own - no plugin manager involved.
+   "
+   " To switch one off: comment out its line below.
+   " To switch one off for good: delete its folder.
+   " Most also honour g:<name>_no_mappings = 1 to keep the commands but drop
+   " the key bindings. See :help <name>.
+   " ---------------------------------------------------------------------
+
+   " Directories worth a :find shortcut. <leader> + key, wildmenu does the rest.
+   let g:projectfind_paths = {
+         \ 'kb':   ['**/libs/entities/basetypes/',        'Knapp basetypes'],
+         \ 'kc':   ['**/libs/logistix/ctxaccess/ctx',     'Knapp ctx access'],
+         \ 'ksup': ['**/libs/components/suppliers/**/',   'Knapp suppliers'],
+         \ 'kl':   ['**/libs/entities/lookup/',           'Knapp lookups'],
+         \ 'ks':   ['libs/components/service/',           'Knapp services'],
+         \ }
+
+   " Header trees differ per host - work is linux, this box is not.
+   if has('mac')
+      let g:projectfind_paths['bg'] = ['/opt/homebrew/include/**/', 'brew headers']
+      let g:projectfind_paths['bc'] = ['/Library/Developer/CommandLineTools/**/',
+            \ 'CommandLineTools']
+   else
+      let g:projectfind_paths['bu'] = ['/usr/include/**/', 'system headers']
+   endif
+
+   " Names for the keyclue popup. projectfind adds its own on top of these.
+   let g:keyclue_desc = {
+         \ '<leader><leader>': 'last buffer',
+         \ '<leader>f':  'format buffer',
+         \ '<leader>lf': 'format with workflowUtil',
+         \ '<leader>gd': 'diff against HEAD',
+         \ '<leader>gD': 'close diff',
+         \ '<leader>n':  'next quickfix',
+         \ '<leader>p':  'previous quickfix',
+         \ '<leader>x':  'change word, repeat with .',
+         \ '<leader>X':  'change word backwards',
+         \ '<leader>sf': 'find files',
+         \ '<leader>sg': 'live grep',
+         \ '<leader>sb': 'buffers',
+         \ '<leader>sl': 'lines in this buffer',
+         \ }
+
+   " How long vim waits on an incomplete mapping - this is the delay before
+   " the keyclue popup shows up. Type the full sequence faster than this and
+   " you never see it.
+   set timeoutlen=400
+
+   for s:plugin in [
+         \ 'tmux-navigate',
+         \ 'projectfind',
+         \ 'gitdiff',
+         \ 'format',
+         \ 'keyclue',
+         \ 'pick',
+         \ ]
+      execute 'packadd!' s:plugin
+   endfor
 
 endif

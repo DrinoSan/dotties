@@ -1,0 +1,65 @@
+*keyclue.txt*   Show which keys can follow a prefix, and what they do
+
+==============================================================================
+USAGE                                                      *keyclue-usage*
+
+Press a trigger prefix (by default `<leader>`) and pause. A popup lists every
+key that can follow, with a description. Keep typing to drill down; the popup
+narrows as you go.
+
+    <BS>     step back one key
+    <Esc>    cancel
+    <CR>     run the prefix itself, when it is both a mapping and a prefix
+             of longer ones (`<leader>ks` next to `<leader>ksup`)
+
+Typing the full sequence quickly never shows the popup at all - the mapping
+fires directly, exactly as before. The popup only appears once vim is already
+waiting on 'timeout'. That means 'timeoutlen' is the delay you feel: >
+    set timeoutlen=400
+<
+==============================================================================
+DESCRIPTIONS                                                *keyclue-desc*
+
+                                                          *g:keyclue_desc*
+Without a description a mapping is labelled with its right hand side, which
+is honest but ugly. Name the ones you care about: >
+    let g:keyclue_desc = {
+      \ '<leader>gd': 'diff against HEAD',
+      \ '<leader>f':  'format buffer',
+      \ }
+<
+`<leader>` is expanded for you. |projectfind| registers its own entries here
+automatically.
+
+==============================================================================
+CONFIGURATION                                             *keyclue-config*
+
+                                                      *g:keyclue_triggers*
+List of prefixes to hook, default `['<leader>']`. Normal mode only: >
+    let g:keyclue_triggers = ['<leader>', 'g', 'z', '<C-w>']
+<
+                                                         *g:keyclue_popup*
+Set to 0 to echo the list instead of using a popup window. Done for you when
+vim lacks +popupwin.
+
+==============================================================================
+TURNING IT OFF                                               *keyclue-off*
+
+Never load it at all - remove `packadd! keyclue` from the vimrc, or: >
+    let g:keyclue_enabled = 0
+<before it loads. At runtime: >
+    :KeyClueDisable
+    :KeyClueEnable
+    :KeyClueToggle
+<
+Disabling removes the trigger mappings, so `<leader>` behaves exactly as it
+did before the plugin existed - no timeout, no popup.
+
+==============================================================================
+LIMITATIONS                                             *keyclue-limits*
+
+A count typed before the prefix (`3<leader>x`) is not forwarded to the
+mapping, because the sequence is resolved and replayed rather than typed.
+Type such sequences fast enough to skip the popup, or disable the trigger.
+
+vim:tw=78:ts=8:ft=help:norl:

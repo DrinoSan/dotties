@@ -1,0 +1,9 @@
+:ProjectFind	projectfind.txt	/*:ProjectFind*
+:ProjectFindList	projectfind.txt	/*:ProjectFindList*
+g:projectfind_no_mappings	projectfind.txt	/*g:projectfind_no_mappings*
+g:projectfind_paths	projectfind.txt	/*g:projectfind_paths*
+g:projectfind_prefix	projectfind.txt	/*g:projectfind_prefix*
+projectfind-commands	projectfind.txt	/*projectfind-commands*
+projectfind-config	projectfind.txt	/*projectfind-config*
+projectfind-usage	projectfind.txt	/*projectfind-usage*
+projectfind.txt	projectfind.txt	/*projectfind.txt*

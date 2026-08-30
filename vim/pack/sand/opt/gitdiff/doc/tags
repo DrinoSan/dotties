@@ -1,0 +1,5 @@
+:GitDiff	gitdiff.txt	/*:GitDiff*
+:GitDiffOff	gitdiff.txt	/*:GitDiffOff*
+gitdiff-commands	gitdiff.txt	/*gitdiff-commands*
+gitdiff-mappings	gitdiff.txt	/*gitdiff-mappings*
+gitdiff.txt	gitdiff.txt	/*gitdiff.txt*
